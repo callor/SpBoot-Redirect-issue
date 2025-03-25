@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Show All List</h1>
+<ul class="main">
+    <li data-id="1">List 1</li>
+    <li data-id="2">List 2</li>
+    <li data-id="3">List 3</li>
+    <li data-id="4">List 4</li>
+    <li data-id="5">List 5</li>
+</ul>
+
+<script>
+    document.addEventListener("DOMContentLoaded", (e)=> {
+        const mainContainer = document.querySelector("ul.main");
+        mainContainer.addEventListener("click", async (e)=>{
+            const li = e.target;
+            if(li.tagName.toLowerCase() === "li"){
+             const id = li.dataset.id;
+                const res = await fetch(`/delete/${id}`,{method:'delete'});
+                const html = await res.text();
+                console.log(html);
+            }
+        })
+    })
+</script>
+
+</body>
+</html>
